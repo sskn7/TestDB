@@ -107,6 +107,31 @@ public void selectByPassword(String password) {
 		}
 		}
 
+public void updateUserNameByUserName(String oldName,String newName) {
+	DBConnector db = new DBConnector();
+	Connection con = db.getConnection();
+
+	String sql ="update test_table set user_name=? where user_name=?";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, newName);
+			ps.setString(2, oldName);
+			int i=ps.executeUpdate();
+			if (i>0) {
+				System.out.println(i + "更新されました");
+			} else {
+				System.out.println("該当するデータがありませんでした");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+}
+
 
 } //classの終わり
 
