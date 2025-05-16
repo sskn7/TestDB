@@ -43,7 +43,7 @@ public void selectAll() {
 	DBConnector db =new DBConnector();
 	Connection con = db.getConnection();
 
-	String sql ="select * fron test_table";
+	String sql ="select * from test_table";
 	try {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs=ps.executeQuery();
