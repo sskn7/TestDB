@@ -6,6 +6,8 @@ import java.sql.SQLException;
 public class TestUserDAO {
 	String name = "";
 	String password = "";
+
+//3
 public void select(String name,String password) {
 	//DBへの接続の準備 mysqlへログインのための文
 	DBConnector db = new DBConnector();
@@ -28,7 +30,6 @@ public void select(String name,String password) {
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
-
 try {
 	//↓データベースとの接続を終了させる構文
 	con.close();
@@ -38,7 +39,7 @@ try {
 }
 
 
-
+//5
 public void selectAll() {
 	DBConnector db =new DBConnector();
 	Connection con = db.getConnection();
@@ -61,6 +62,7 @@ public void selectAll() {
 	}
 }
 
+//7
 public void selectByName(String name) {
 	DBConnector db = new DBConnector();
 	Connection con = db.getConnection();
@@ -84,6 +86,7 @@ public void selectByName(String name) {
 	}
  }
 
+//9
 public void selectByPassword(String password) {
 	DBConnector db = new DBConnector();
 	Connection con = db.getConnection();
@@ -107,6 +110,7 @@ public void selectByPassword(String password) {
 		}
 		}
 
+//11
 public void updateUserNameByUserName(String oldName,String newName) {
 	DBConnector db = new DBConnector();
 	Connection con = db.getConnection();
@@ -132,6 +136,58 @@ public void updateUserNameByUserName(String oldName,String newName) {
 		}
 }
 
+//13
+public void insert(int user_id,String name,String password) {
+	DBConnector db = new DBConnector();
+	Connection con = db.getConnection();
+
+	String sql = "insert into test_table values(?,?,?)";
+	try {
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, user_id);
+		ps.setString(2, name);
+		ps.setString(3, password);
+		int i=ps.executeUpdate();
+		if (i>0) {
+			System.out.println(i + "件登録されました");
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	try {
+		con.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+}
+
+//15
+//public void の後に何をするか(delete insert update)、何を(String name password)
+public void delete(String name) {
+	//↓2文は定型文
+	DBConnector db = new DBConnector();
+	Connection con = db.getConnection();
+
+	//↓データベースに接続するための構文
+	String sql ="delete from test_table where user_name=?";
+	//↓そこで何をするかの指示構文
+	try {
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, name);
+		int i=ps.executeUpdate();
+		if (i>0) {
+			System.out.println(i + "件削除されました");
+		}
+	// 定型文
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	try {
+		con.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+}
 
 } //classの終わり
 
