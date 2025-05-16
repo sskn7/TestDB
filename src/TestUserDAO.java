@@ -36,6 +36,31 @@ try {
 	e.printStackTrace();
 }
 }
+
+
+
+public void selectAll() {
+	DBConnector db =new DBConnector();
+	Connection con = db.getConnection();
+
+	String sql ="select * fron test_table";
+	try {
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs=ps.executeQuery();
+		while (rs.next()) {
+			System.out.println(rs.getString("user_name"));
+			System.out.println(rs.getString("password"));
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	try {
+		con.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+}
+
 }
 
 //DAO データアクセスオブジェクト
