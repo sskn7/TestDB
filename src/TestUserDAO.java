@@ -7,7 +7,7 @@ public class TestUserDAO {
 	String name = "";
 	String password = "";
 
-//3
+//3 名前とパスワードを表示する
 public void select(String name,String password) {
 	//DBへの接続の準備 mysqlへログインのための文
 	DBConnector db = new DBConnector();
@@ -39,7 +39,7 @@ try {
 }
 
 
-//5
+//5 情報の全てを表示する
 public void selectAll() {
 	DBConnector db =new DBConnector();
 	Connection con = db.getConnection();
@@ -62,7 +62,7 @@ public void selectAll() {
 	}
 }
 
-//7
+//7 名前から呼び出す
 public void selectByName(String name) {
 	DBConnector db = new DBConnector();
 	Connection con = db.getConnection();
@@ -86,7 +86,7 @@ public void selectByName(String name) {
 	}
  }
 
-//9
+//9 パスワードから呼び出す
 public void selectByPassword(String password) {
 	DBConnector db = new DBConnector();
 	Connection con = db.getConnection();
@@ -110,7 +110,7 @@ public void selectByPassword(String password) {
 		}
 		}
 
-//11
+//11 既存の情報を更新する
 public void updateUserNameByUserName(String oldName,String newName) {
 	DBConnector db = new DBConnector();
 	Connection con = db.getConnection();
@@ -136,7 +136,7 @@ public void updateUserNameByUserName(String oldName,String newName) {
 		}
 }
 
-//13
+//13 新しい情報を登録する
 public void insert(int user_id,String name,String password) {
 	DBConnector db = new DBConnector();
 	Connection con = db.getConnection();
